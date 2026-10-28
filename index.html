@@ -1,0 +1,1686 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mochi Mood — магазин моти</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+    --cream: #FDF1E2;
+    --purple: #655A7C;
+    --lilac: #AB92BF;
+    --pink: #E8C7D9;
+    --white: #FFFFFF;
+    --text: #51465F;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: var(--cream);
+    color: var(--purple);
+    font-family: 'Nunito', sans-serif;
+    overflow-x: hidden;
+}
+
+button, input {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.container {
+    width: min(1200px, 92%);
+    margin: auto;
+}
+
+/* Верхняя панель */
+
+.topbar {
+    background: var(--purple);
+    color: white;
+    padding: 9px 5%;
+    text-align: center;
+    font-size: 12px;
+    letter-spacing: 1px;
+}
+
+header {
+    background: var(--cream);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 4px 18px #655A7C12;
+}
+
+.navbar {
+    max-width: 1300px;
+    margin: auto;
+    padding: 18px 4%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.logo {
+    font-size: 27px;
+    font-weight: 900;
+    letter-spacing: -1px;
+    white-space: nowrap;
+}
+
+.logo span {
+    color: var(--lilac);
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.nav-links a {
+    font-size: 13px;
+    font-weight: 800;
+    transition: .25s;
+}
+
+.nav-links a:hover {
+    color: var(--lilac);
+}
+
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.icon-btn {
+    border: 1px solid #655A7C25;
+    background: white;
+    color: var(--purple);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 17px;
+    transition: .25s;
+}
+
+.icon-btn:hover {
+    background: var(--lilac);
+    color: white;
+    transform: translateY(-2px);
+}
+
+.cart-count {
+    font-size: 11px;
+    font-weight: 900;
+}
+
+/* Кнопки */
+
+.btn {
+    border: none;
+    border-radius: 30px;
+    padding: 13px 25px;
+    background: var(--purple);
+    color: white;
+    font-weight: 800;
+    font-size: 13px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: .3s;
+}
+
+.btn:hover {
+    background: var(--lilac);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px #655A7C25;
+}
+
+.btn-light {
+    background: white;
+    color: var(--purple);
+}
+
+/* Первый экран */
+
+.hero {
+    min-height: 490px;
+    display: grid;
+    grid-template-columns: 1fr 1.05fr;
+    background: white;
+    overflow: hidden;
+    border-radius: 0 0 32px 32px;
+}
+
+.hero-text {
+    padding: 65px 8% 60px 12%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    position: relative;
+}
+
+.eyebrow {
+    color: var(--lilac);
+    font-size: 12px;
+    font-weight: 900;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+}
+
+.hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(35px, 4vw, 57px);
+    line-height: 1.1;
+    color: var(--purple);
+    margin-bottom: 22px;
+}
+
+.hero h1 span {
+    color: var(--lilac);
+    font-style: italic;
+}
+
+.hero p {
+    color: #82778C;
+    font-size: 14px;
+    line-height: 1.9;
+    max-width: 400px;
+    margin-bottom: 28px;
+}
+
+.hero-note {
+    position: absolute;
+    right: 25px;
+    top: 25px;
+    font-size: 30px;
+    color: var(--lilac);
+    transform: rotate(15deg);
+}
+
+.hero-image {
+    min-height: 490px;
+    background:
+        linear-gradient(0deg, #655A7C16, #655A7C05),
+        url('https://images.unsplash.com/photo-1563805042-7684c019e1cb?auto=format&fit=crop&w=1200&q=85')
+        center/cover;
+    position: relative;
+}
+
+.image-label {
+    position: absolute;
+    right: 25px;
+    bottom: 25px;
+    background: #FDF1E2E8;
+    padding: 16px 22px;
+    border-radius: 20px;
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+}
+
+/* Декоративная лента */
+
+.ribbon {
+    background: var(--lilac);
+    color: white;
+    padding: 13px 0;
+    overflow: hidden;
+    white-space: nowrap;
+    margin-bottom: 15px;
+}
+
+.ribbon-track {
+    display: flex;
+    justify-content: space-around;
+    gap: 35px;
+    font-size: 13px;
+    font-weight: 900;
+    letter-spacing: 2px;
+}
+
+/* Общие секции */
+
+.section {
+    padding: 80px 0;
+}
+
+.section-heading {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 25px;
+    margin-bottom: 35px;
+}
+
+.section-heading h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(29px, 4vw, 42px);
+    line-height: 1.15;
+}
+
+.section-heading h2 span {
+    color: var(--lilac);
+    font-style: italic;
+}
+
+.section-heading p {
+    color: #897E91;
+    font-size: 13px;
+    line-height: 1.8;
+    max-width: 310px;
+}
+
+/* Категории */
+
+.categories {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 28px;
+}
+
+.category {
+    border: 1px solid #655A7C30;
+    background: transparent;
+    color: var(--purple);
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-size: 12px;
+    font-weight: 800;
+    transition: .25s;
+}
+
+.category:hover,
+.category.active {
+    background: var(--purple);
+    color: white;
+    border-color: var(--purple);
+}
+
+/* Карточки моти */
+
+.products {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 22px;
+}
+
+.product-card {
+    background: white;
+    border-radius: 22px;
+    padding: 10px 10px 20px;
+    position: relative;
+    transition: .3s;
+    min-width: 0;
+}
+
+.product-card:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 15px 35px #655A7C12;
+}
+
+.product-image {
+    height: 205px;
+    border-radius: 16px;
+    overflow: hidden;
+    position: relative;
+    background: var(--pink);
+}
+
+.product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: .5s;
+}
+
+.product-card:hover .product-image img {
+    transform: scale(1.07);
+}
+
+.product-tag {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    padding: 6px 11px;
+    background: var(--cream);
+    border-radius: 20px;
+    font-size: 10px;
+    font-weight: 900;
+}
+
+.favorite {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    border: none;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: white;
+    color: var(--purple);
+    font-size: 19px;
+    z-index: 2;
+}
+
+.favorite.selected {
+    color: #D96B93;
+}
+
+.product-info {
+    padding: 15px 7px 0;
+}
+
+.product-info h3 {
+    font-size: 16px;
+    margin-bottom: 6px;
+}
+
+.product-description {
+    font-size: 12px;
+    color: #96899E;
+    line-height: 1.6;
+    min-height: 38px;
+}
+
+.product-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 14px;
+    gap: 8px;
+}
+
+.price {
+    font-size: 17px;
+    font-weight: 900;
+    white-space: nowrap;
+}
+
+.add-cart {
+    border: none;
+    border-radius: 50%;
+    width: 38px;
+    height: 38px;
+    background: var(--purple);
+    color: white;
+    font-size: 21px;
+    transition: .25s;
+    flex-shrink: 0;
+}
+
+.add-cart:hover {
+    background: var(--lilac);
+    transform: rotate(90deg);
+}
+
+.center-button {
+    text-align: center;
+    margin-top: 35px;
+}
+
+/* Большой блок с категориями */
+
+.occasion-section {
+    background: var(--lilac);
+    padding: 65px 0 75px;
+    color: white;
+    position: relative;
+    overflow: hidden;
+    border-radius: 45% 0 0 0 / 5% 0 0 0;
+}
+
+.occasion-section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(35px, 5vw, 55px);
+    text-align: center;
+    margin-bottom: 12px;
+}
+
+.occasion-subtitle {
+    text-align: center;
+    font-size: 13px;
+    opacity: .9;
+    margin-bottom: 40px;
+}
+
+.occasion-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.occasion-card {
+    background: var(--cream);
+    color: var(--purple);
+    border-radius: 20px;
+    padding: 10px;
+    transform: rotate(-2deg);
+    transition: .3s;
+}
+
+.occasion-card:nth-child(even) {
+    transform: rotate(2deg);
+}
+
+.occasion-card:hover {
+    transform: translateY(-8px) rotate(0);
+}
+
+.occasion-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 14px;
+}
+
+.occasion-card h3 {
+    font-size: 15px;
+    padding: 13px 8px 5px;
+}
+
+.occasion-card p {
+    font-size: 11px;
+    padding: 0 8px 12px;
+    color: #897E91;
+}
+
+/* О бренде */
+
+.about {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 45px;
+    align-items: center;
+}
+
+.about-image {
+    min-height: 390px;
+    border-radius: 25px;
+    background:
+        url('https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=1000&q=85')
+        center/cover;
+    position: relative;
+}
+
+.about-badge {
+    position: absolute;
+    right: -15px;
+    bottom: 25px;
+    background: var(--purple);
+    color: white;
+    width: 115px;
+    height: 115px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 800;
+    transform: rotate(10deg);
+}
+
+.about-text h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 4vw, 45px);
+    line-height: 1.15;
+    margin-bottom: 20px;
+}
+
+.about-text h2 span {
+    color: var(--lilac);
+    font-style: italic;
+}
+
+.about-text > p {
+    color: #897E91;
+    font-size: 14px;
+    line-height: 1.9;
+    margin-bottom: 25px;
+}
+
+.features {
+    display: grid;
+    gap: 20px;
+}
+
+.feature {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+}
+
+.feature-icon {
+    width: 43px;
+    height: 43px;
+    background: #AB92BF2B;
+    border-radius: 15px;
+    display: grid;
+    place-items: center;
+    font-size: 20px;
+    flex-shrink: 0;
+}
+
+.feature h3 {
+    font-size: 14px;
+    margin-bottom: 4px;
+}
+
+.feature p {
+    font-size: 12px;
+    line-height: 1.7;
+    color: #897E91;
+}
+
+/* Отзывы */
+
+.reviews {
+    background: #FFFFFF90;
+}
+
+.review-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.review-card {
+    background: white;
+    border-radius: 22px;
+    padding: 25px;
+}
+
+.stars {
+    color: #D6A65D;
+    letter-spacing: 3px;
+    margin-bottom: 15px;
+}
+
+.review-card p {
+    color: #7F748A;
+    font-size: 13px;
+    line-height: 1.9;
+    margin-bottom: 20px;
+}
+
+.review-author {
+    font-weight: 900;
+    font-size: 13px;
+}
+
+.review-author span {
+    display: block;
+    font-weight: 500;
+    color: #A398AE;
+    font-size: 11px;
+    margin-top: 4px;
+}
+
+/* Подписка */
+
+.newsletter {
+    background: var(--purple);
+    color: white;
+    border-radius: 28px;
+    padding: 50px 30px;
+    text-align: center;
+    margin-top: 75px;
+}
+
+.newsletter h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 4vw, 40px);
+    margin-bottom: 12px;
+}
+
+.newsletter p {
+    font-size: 13px;
+    opacity: .8;
+    margin-bottom: 25px;
+}
+
+.newsletter-form {
+    display: flex;
+    gap: 10px;
+    max-width: 460px;
+    margin: auto;
+}
+
+.newsletter-form input {
+    width: 100%;
+    min-width: 0;
+    border: none;
+    outline: none;
+    background: white;
+    border-radius: 25px;
+    padding: 14px 20px;
+    color: var(--purple);
+}
+
+.newsletter-form button {
+    flex-shrink: 0;
+}
+
+/* Подвал */
+
+footer {
+    padding: 40px 0 25px;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    padding-bottom: 25px;
+    border-bottom: 1px solid #655A7C20;
+}
+
+.footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    font-size: 12px;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 20px;
+    font-size: 11px;
+    color: #9C91A5;
+}
+
+/* Корзина */
+
+.cart-overlay {
+    position: fixed;
+    inset: 0;
+    background: #21192B80;
+    z-index: 200;
+    opacity: 0;
+    visibility: hidden;
+    transition: .3s;
+}
+
+.cart-overlay.open {
+    opacity: 1;
+    visibility: visible;
+}
+
+.cart-panel {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: min(430px, 100%);
+    background: var(--cream);
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    transform: translateX(100%);
+    transition: .3s;
+}
+
+.cart-overlay.open .cart-panel {
+    transform: translateX(0);
+}
+
+.cart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.cart-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+}
+
+.close-cart {
+    background: white;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 22px;
+    color: var(--purple);
+}
+
+.cart-items {
+    flex: 1;
+    overflow-y: auto;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 0;
+    border-bottom: 1px solid #655A7C20;
+}
+
+.cart-item h4 {
+    font-size: 13px;
+    margin-bottom: 5px;
+}
+
+.cart-item p {
+    font-size: 12px;
+    color: #897E91;
+}
+
+.quantity-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.quantity-controls button {
+    border: none;
+    background: white;
+    color: var(--purple);
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+}
+
+.cart-footer {
+    padding-top: 20px;
+}
+
+.cart-total {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 900;
+    margin-bottom: 18px;
+    font-size: 17px;
+}
+
+.cart-footer .btn {
+    width: 100%;
+}
+
+.empty-cart {
+    text-align: center;
+    color: #978BA2;
+    padding: 35px 0;
+    font-size: 14px;
+}
+
+/* Уведомления */
+
+.toast {
+    position: fixed;
+    bottom: 25px;
+    left: 50%;
+    transform: translate(-50%, 100px);
+    opacity: 0;
+    z-index: 300;
+    background: var(--purple);
+    color: white;
+    padding: 14px 24px;
+    border-radius: 30px;
+    font-size: 13px;
+    box-shadow: 0 8px 30px #655A7C30;
+    transition: .3s;
+    text-align: center;
+    max-width: 90%;
+}
+
+.toast.show {
+    transform: translate(-50%, 0);
+    opacity: 1;
+}
+
+/* Адаптация под телефон */
+
+@media (max-width: 900px) {
+    .nav-links {
+        gap: 12px;
+    }
+
+    .nav-links a {
+        font-size: 11px;
+    }
+
+    .hero-text {
+        padding-left: 8%;
+    }
+
+    .products {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .occasion-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .about {
+        gap: 30px;
+    }
+
+    .about-image {
+        min-height: 330px;
+    }
+}
+
+@media (max-width: 600px) {
+    .topbar {
+        font-size: 10px;
+        padding: 9px 12px;
+    }
+
+    .navbar {
+        padding: 14px 4%;
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+
+    .logo {
+        font-size: 23px;
+    }
+
+    .nav-links {
+        order: 3;
+        width: 100%;
+        justify-content: space-between;
+        overflow-x: auto;
+        gap: 18px;
+        padding: 6px 0 2px;
+    }
+
+    .nav-links a {
+        white-space: nowrap;
+        font-size: 12px;
+    }
+
+    .nav-actions {
+        margin-left: auto;
+    }
+
+    .nav-actions .btn {
+        display: none;
+    }
+
+    .icon-btn {
+        width: 36px;
+        height: 36px;
+    }
+
+    .hero {
+        grid-template-columns: 1fr;
+        border-radius: 0 0 25px 25px;
+    }
+
+    .hero-text {
+        padding: 45px 7% 35px;
+    }
+
+    .hero h1 {
+        font-size: 39px;
+    }
+
+    .hero-image {
+        min-height: 290px;
+        order: -1;
+    }
+
+    .hero-note {
+        font-size: 24px;
+    }
+
+    .section {
+        padding: 55px 0;
+    }
+
+    .section-heading {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 12px;
+        margin-bottom: 25px;
+    }
+
+    .section-heading h2 {
+        font-size: 32px;
+    }
+
+    .categories {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        padding-bottom: 8px;
+    }
+
+    .category {
+        white-space: nowrap;
+        flex-shrink: 0;
+    }
+
+    .products {
+        gap: 12px;
+    }
+
+    .product-card {
+        padding: 7px 7px 13px;
+        border-radius: 17px;
+    }
+
+    .product-image {
+        height: 155px;
+        border-radius: 12px;
+    }
+
+    .product-info {
+        padding: 12px 4px 0;
+    }
+
+    .product-info h3 {
+        font-size: 14px;
+    }
+
+    .product-description {
+        font-size: 11px;
+    }
+
+    .price {
+        font-size: 14px;
+    }
+
+    .add-cart {
+        width: 33px;
+        height: 33px;
+    }
+
+    .occasion-section {
+        padding: 50px 0;
+    }
+
+    .occasion-grid {
+        gap: 12px;
+    }
+
+    .occasion-card img {
+        height: 140px;
+    }
+
+    .occasion-card h3 {
+        font-size: 13px;
+    }
+
+    .about {
+        grid-template-columns: 1fr;
+    }
+
+    .about-image {
+        min-height: 300px;
+    }
+
+    .about-badge {
+        width: 95px;
+        height: 95px;
+        right: 10px;
+    }
+
+    .review-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .newsletter {
+        margin-top: 45px;
+        padding: 35px 18px;
+    }
+
+    .newsletter-form {
+        flex-direction: column;
+    }
+
+    .newsletter-form .btn {
+        width: 100%;
+    }
+
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .footer-links {
+        justify-content: center;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        scroll-behavior: auto !important;
+        transition: none !important;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="topbar">
+    ✦ МОТИ, СОЗДАННЫЕ С ЛЮБОВЬЮ · НЕЖНОСТЬ В КАЖДОМ КУСОЧКЕ ✦
+</div>
+
+<header>
+    <nav class="navbar">
+        <a href="#home" class="logo">mochi<span> mood.</span> ♡</a>
+
+        <div class="nav-links">
+            <a href="#home">Главная</a>
+            <a href="#catalog">Каталог</a>
+            <a href="#occasions">Коллекции</a>
+            <a href="#about">О нас</a>
+            <a href="#reviews">Отзывы</a>
+        </div>
+
+        <div class="nav-actions">
+            <button class="icon-btn" onclick="showFavorites()" aria-label="Избранное">♡</button>
+            <button class="icon-btn" onclick="openCart()" aria-label="Корзина">
+                ♧ <span class="cart-count" id="cartCount">0</span>
+            </button>
+            <a href="#catalog" class="btn">Выбрать моти →</a>
+        </div>
+    </nav>
+</header>
+
+<main>
+    <!-- Первый экран -->
+    <section class="container hero" id="home">
+        <div class="hero-text">
+            <span class="hero-note">✧ ♡</span>
+            <div class="eyebrow">Little bites of happiness</div>
+            <h1>Маленькие<br>моти для <span>большой</span><br>радости</h1>
+            <p>
+                Нежное рисовое тесто, воздушные начинки
+                и необычные сочетания вкусов.
+                Попробуй Японию на вкус вместе с нами!
+            </p>
+            <a href="#catalog" class="btn">Открыть каталог →</a>
+        </div>
+
+        <div class="hero-image">
+            <div class="image-label">С любовью, mochi mood ♡</div>
+        </div>
+    </section>
+
+    <div class="ribbon">
+        <div class="ribbon-track">
+            <span>MOCHI MOOD ✦</span>
+            <span>НЕЖНОСТЬ ВНУТРИ ♡</span>
+            <span>СЛАДКИЕ МОМЕНТЫ ✦</span>
+            <span>MOCHI MOOD ♡</span>
+            <span>MADE WITH LOVE ✦</span>
+        </div>
+    </div>
+
+    <!-- Каталог -->
+    <section class="section container" id="catalog">
+        <div class="section-heading">
+            <div>
+                <div class="eyebrow">Our bestsellers</div>
+                <h2>Наши маленькие<br><span>сладкие радости.</span></h2>
+            </div>
+            <p>
+                От классической клубники до нежного матча.
+                Найди свой любимый вкус и подари себе
+                немного счастья.
+            </p>
+        </div>
+
+        <div class="categories">
+            <button class="category active" data-category="all">Все моти</button>
+            <button class="category" data-category="fruit">Фруктовые</button>
+            <button class="category" data-category="chocolate">Шоколадные</button>
+            <button class="category" data-category="classic">Классические</button>
+            <button class="category" data-category="special">Особенные</button>
+        </div>
+
+        <div class="products" id="products">
+
+            <article class="product-card" data-id="1" data-category="fruit">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=600&q=80" alt="Моти клубника">
+                    <span class="product-tag">ХИТ ♡</span>
+                    <button class="favorite" aria-label="Добавить в избранное">♡</button>
+                </div>
+                <div class="product-info">
+                    <h3>Strawberry Kiss</h3>
+                    <p class="product-description">Клубничная начинка и нежный сливочный крем</p>
+                    <div class="product-bottom">
+                        <span class="price">190 ₽</span>
+                        <button class="add-cart" aria-label="Добавить в корзину">+</button>
+                    </div>
+                </div>
+            </article>
+
+            <article class="product-card" data-id="2" data-category="chocolate">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=600&q=80" alt="Шоколадный десерт">
+                    <span class="product-tag">NEW</span>
+                    <button class="favorite" aria-label="Добавить в избранное">♡</button>
+                </div>
+                <div class="product-info">
+                    <h3>Choco Dream</h3>
+                    <p class="product-description">Насыщенный шоколад и бархатная текстура</p>
+                    <div class="product-bottom">
+                        <span class="price">210 ₽</span>
+                        <button class="add-cart" aria-label="Добавить в корзину">+</button>
+                    </div>
+                </div>
+            </article>
+
+            <article class="product-card" data-id="3" data-category="classic">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1563805042-7684c019e1cb?auto=format&fit=crop&w=600&q=80" alt="Ванильный десерт">
+                    <button class="favorite" aria-label="Добавить в избранное">♡</button>
+                </div>
+                <div class="product-info">
+                    <h3>Vanilla Cloud</h3>
+                    <p class="product-description">Мягкий ванильный крем и молочная сладость</p>
+                    <div class="product-bottom">
+                        <span class="price">180 ₽</span>
+                        <button class="add-cart" aria-label="Добавить в корзину">+</button>
+                    </div>
+                </div>
+            </article>
+
+            <article class="product-card" data-id="4" data-category="special">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1515823064-d6e0c04616a7?auto=format&fit=crop&w=600&q=80" alt="Чай матча">
+                    <span class="product-tag">SPECIAL</span>
+                    <button class="favorite" aria-label="Добавить в избранное">♡</button>
+                </div>
+                <div class="product-info">
+                    <h3>Matcha Mood</h3>
+                    <p class="product-description">Японский чай матча с нежным кремом</p>
+                    <div class="product-bottom">
+                        <span class="price">220 ₽</span>
+                        <button class="add-cart" aria-label="Добавить в корзину">+</button>
+                    </div>
+                </div>
+            </article>
+
+            <article class="product-card" data-id="5" data-category="fruit">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&w=600&q=80" alt="Ягодный десерт">
+                    <button class="favorite" aria-label="Добавить в избранное">♡</button>
+                </div>
+                <div class="product-info">
+                    <h3>Berry Love</h3>
+                    <p class="product-description">Микс ягод с лёгким сливочным вкусом</p>
+                    <div class="product-bottom">
+                        <span class="price">200 ₽</span>
+                        <button class="add-cart" aria-label="Добавить в корзину">+</button>
+                    </div>
+                </div>
+            </article>
+
+            <article class="product-card" data-id="6" data-category="chocolate">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=600&q=80" alt="Шоколад">
+                    <button class="favorite" aria-label="Добавить в избранное">♡</button>
+                </div>
+                <div class="product-info">
+                    <h3>Choco Berry</h3>
+                    <p class="product-description">Шоколадная оболочка и ягодная начинка</p>
+                    <div class="product-bottom">
+                        <span class="price">220 ₽</span>
+                        <button class="add-cart" aria-label="Добавить в корзину">+</button>
+                    </div>
+                </div>
+            </article>
+
+            <article class="product-card" data-id="7" data-category="classic">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1486427944299-d1955d23e34d?auto=format&fit=crop&w=600&q=80" alt="Нежный десерт">
+                    <button class="favorite" aria-label="Добавить в избранное">♡</button>
+                </div>
+                <div class="product-info">
+                    <h3>Milk & Honey</h3>
+                    <p class="product-description">Молочный крем с мягкими медовыми нотами</p>
+                    <div class="product-bottom">
+                        <span class="price">190 ₽</span>
+                        <button class="add-cart" aria-label="Добавить в корзину">+</button>
+                    </div>
+                </div>
+            </article>
+
+            <article class="product-card" data-id="8" data-category="special">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1557142046-c704a3adf364?auto=format&fit=crop&w=600&q=80" alt="Моти с мороженым">
+                    <span class="product-tag">FAVOURITE</span>
+                    <button class="favorite" aria-label="Добавить в избранное">♡</button>
+                </div>
+                <div class="product-info">
+                    <h3>Lavender Dream</h3>
+                    <p class="product-description">Авторский вкус с нежным кремом</p>
+                    <div class="product-bottom">
+                        <span class="price">240 ₽</span>
+                        <button class="add-cart" aria-label="Добавить в корзину">+</button>
+                    </div>
+                </div>
+            </article>
+
+        </div>
+
+        <div class="center-button">
+            <button class="btn" onclick="showAllProducts()">Смотреть все моти →</button>
+        </div>
+    </section>
+
+    <!-- Коллекции -->
+    <section class="occasion-section" id="occasions">
+        <div class="container">
+            <div class="eyebrow" style="color:var(--cream);text-align:center">Sweet occasions</div>
+            <h2>Выбери настроение ♡</h2>
+            <p class="occasion-subtitle">Для себя, для близких и просто без повода</p>
+
+            <div class="occasion-grid">
+                <a href="#catalog" class="occasion-card">
+                    <img src="https://images.unsplash.com/photo-1499636136210-6f4ee915583e?auto=format&fit=crop&w=600&q=80" alt="Сладости к чаю">
+                    <h3>Для уютного вечера</h3>
+                    <p>Чай, плед и любимые моти</p>
+                </a>
+
+                <a href="#catalog" class="occasion-card">
+                    <img src="https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?auto=format&fit=crop&w=600&q=80" alt="Праздничный торт">
+                    <h3>На день рождения</h3>
+                    <p>Маленький сладкий сюрприз</p>
+                </a>
+
+                <a href="#catalog" class="occasion-card">
+                    <img src="https://images.unsplash.com/photo-1511911063855-2bf39afa5b2e?auto=format&fit=crop&w=600&q=80" alt="Подарочная коробка">
+                    <h3>В подарок</h3>
+                    <p>Чтобы сказать «я о тебе помню»</p>
+                </a>
+
+                <a href="#catalog" class="occasion-card">
+                    <img src="https://images.unsplash.com/photo-1481391319762-47dff72954d9?auto=format&fit=crop&w=600&q=80" alt="Конфеты">
+                    <h3>Просто так ♡</h3>
+                    <p>Потому что ты заслуживаешь</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Преимущества -->
+    <section class="section container" id="about">
+        <div class="about">
+            <div class="about-image">
+                <div class="about-badge">Made with<br>love ♡</div>
+            </div>
+
+            <div class="about-text">
+                <div class="eyebrow">Why mochi mood?</div>
+                <h2>Маленький десерт.<br><span>Большое счастье.</span></h2>
+                <p>
+                    Мы верим, что сладости — это не просто десерт.
+                    Это повод собраться вместе, порадовать близкого
+                    человека или устроить маленький праздник для себя.
+                </p>
+
+                <div class="features">
+                    <div class="feature">
+                        <div class="feature-icon">♡</div>
+                        <div>
+                            <h3>Нежная текстура</h3>
+                            <p>Мягкое рисовое тесто и кремовая начинка в каждом кусочке.</p>
+                        </div>
+                    </div>
+
+                    <div class="feature">
+                        <div class="feature-icon">✿</div>
+                        <div>
+                            <h3>Необычные вкусы</h3>
+                            <p>От любимой клубники до оригинального сочетания с матча.</p>
+                        </div>
+                    </div>
+
+                    <div class="feature">
+                        <div class="feature-icon">♡</div>
+                        <div>
+                            <h3>Красиво упаковано</h3>
+                            <p>Каждый набор оформлен так, чтобы его было приятно подарить.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Отзывы -->
+    <section class="section reviews" id="reviews">
+        <div class="container">
+            <div class="section-heading">
+                <div>
+                    <div class="eyebrow">Sweet words</div>
+                    <h2>Нас выбирают <span>сердцем.</span></h2>
+                </div>
+                <p>Немного любви от тех, кто уже попробовал наши моти.</p>
+            </div>
+
+            <div class="review-grid">
+                <article class="review-card">
+                    <div class="stars">★★★★★</div>
+                    <p>«Очень нежные! Клубничный вкус просто невероятный. А упаковка такая милая, что даже жалко открывать».</p>
+                    <div class="review-author">Алина ♡<span>Любительница клубники</span></div>
+                </article>
+
+                <article class="review-card">
+                    <div class="stars">★★★★★</div>
+                    <p>«Заказала набор на день рождения. Всё красиво, аккуратно и очень вкусно. Теперь хочу попробовать все вкусы».</p>
+                    <div class="review-author">София ♡<span>Постоянный покупатель</span></div>
+                </article>
+
+                <article class="review-card">
+                    <div class="stars">★★★★★</div>
+                    <p>«Matcha Mood — моя любовь! Не слишком сладко, нежная начинка и очень приятный вкус».</p>
+                    <div class="review-author">Маша ♡<span>Поклонница матча</span></div>
+                </article>
+            </div>
+
+            <!-- Подписка -->
+            <div class="newsletter">
+                <h2>Немного сладости в твоей почте ♡</h2>
+                <p>Оставь почту, чтобы узнавать о новинках и специальных предложениях.</p>
+                <form class="newsletter-form" id="newsletterForm">
+                    <input type="email" id="emailInput" placeholder="Твоя электронная почта" required>
+                    <button class="btn btn-light" type="submit">Хочу новости →</button>
+                </form>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <div class="container">
+        <div class="footer-content">
+            <a href="#home" class="logo">mochi<span> mood.</span> ♡</a>
+            <div class="footer-links">
+                <a href="#catalog">Каталог</a>
+                <a href="#occasions">Коллекции</a>
+                <a href="#about">О нас</a>
+                <a href="#reviews">Отзывы</a>
+            </div>
+            <div>Сделано с любовью ✿</div>
+        </div>
+        <div class="footer-bottom">
+            © 2026 Mochi Mood · Все права защищены
+        </div>
+    </div>
+</footer>
+
+<!-- Выдвижная корзина -->
+<div class="cart-overlay" id="cartOverlay" onclick="overlayClick(event)">
+    <aside class="cart-panel" aria-label="Корзина покупок">
+        <div class="cart-header">
+            <h2>Твоя корзина ♡</h2>
+            <button class="close-cart" onclick="closeCart()" aria-label="Закрыть корзину">×</button>
+        </div>
+
+        <div class="cart-items" id="cartItems"></div>
+
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Итого:</span>
+                <span id="cartTotal">0 ₽</span>
+            </div>
+            <button class="btn" onclick="checkout()">Оформить заказ →</button>
+        </div>
+    </aside>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const products = [
+    { id: 1, name: 'Strawberry Kiss', price: 190 },
+    { id: 2, name: 'Choco Dream', price: 210 },
+    { id: 3, name: 'Vanilla Cloud', price: 180 },
+    { id: 4, name: 'Matcha Mood', price: 220 },
+    { id: 5, name: 'Berry Love', price: 200 },
+    { id: 6, name: 'Choco Berry', price: 220 },
+    { id: 7, name: 'Milk & Honey', price: 190 },
+    { id: 8, name: 'Lavender Dream', price: 240 }
+];
+
+let cart = [];
+let favorites = new Set();
+let favoritesOnly = false;
+let toastTimer;
+
+const formatPrice = price =>
+    price.toLocaleString('ru-RU') + ' ₽';
+
+function showToast(message) {
+    const toast = document.getElementById('toast');
+    toast.textContent = message;
+    toast.classList.add('show');
+
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => {
+        toast.classList.remove('show');
+    }, 2500);
+}
+
+// Фильтрация товаров по категориям
+document.querySelectorAll('.category').forEach(button => {
+    button.addEventListener('click', () => {
+        document.querySelectorAll('.category').forEach(item =>
+            item.classList.remove('active')
+        );
+
+        button.classList.add('active');
+        favoritesOnly = false;
+
+        const category = button.dataset.category;
+
+        document.querySelectorAll('.product-card').forEach(card => {
+            const matches = category === 'all' ||
+                card.dataset.category === category;
+
+            card.style.display = matches ? '' : 'none';
+        });
+    });
+});
+
+// Добавление в корзину
+document.querySelectorAll('.add-cart').forEach(button => {
+    button.addEventListener('click', () => {
+        const card = button.closest('.product-card');
+        const id = Number(card.dataset.id);
+        addToCart(id);
+    });
+});
+
+function addToCart(id) {
+    const product = products.find(item => item.id === id);
+    const existing = cart.find(item => item.id === id);
+
+    if (existing) {
+        existing.quantity++;
+    } else {
+        cart.push({ ...product, quantity: 1 });
+    }
+
+    updateCart();
+    showToast(product.name + ' добавлен в корзину ♡');
+}
+
+// Избранное
+document.querySelectorAll('.favorite').forEach(button => {
+    button.addEventListener('click', () => {
+        const id = Number(button.closest('.product-card').dataset.id);
+
+        if (favorites.has(id)) {
+            favorites.delete(id);
+            button.classList.remove('selected');
+            button.textContent = '♡';
+        } else {
+            favorites.add(id);
+            button.classList.add('selected');
+            button.textContent = '♥';
+        }
+    });
+});
+
+function showFavorites() {
+    favoritesOnly = !favoritesOnly;
+
+    document.querySelectorAll('.category').forEach(item =>
+        item.classList.remove('active')
+    );
+
+    document.querySelectorAll('.product-card').forEach(card => {
+        const id = Number(card.dataset.id);
+
+        card.style.display =
+            !favoritesOnly || favorites.has(id) ? '' : 'none';
+    });
+
+    document.getElementById('catalog').scrollIntoView({
+        behavior: 'smooth'
+    });
+
+    showToast(favoritesOnly ? 'Твои любимые моти ♡' : 'Весь каталог');
+}
+
+function showAllProducts() {
+    favoritesOnly = false;
+
+    document.querySelectorAll('.category').forEach(item => {
+        item.classList.toggle('active', item.dataset.category === 'all');
+    });
+
+    document.querySelectorAll('.product-card').forEach(card => {
+        card.style.display = '';
+    });
+
+    showToast('Ты видишь весь каталог ♡');
+}
+
+// Корзина
+function openCart() {
+    document.getElementById('cartOverlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeCart() {
+    document.getElementById('cartOverlay').classList.remove('open');
+    document.body.style.overflow = '';
+}
+
+function overlayClick(event) {
+    if (event.target.id === 'cartOverlay') {
+        closeCart();
+    }
+}
+
+function updateCart() {
+    const container = document.getElementById('cartItems');
+    const count = cart.reduce((sum, item) => sum + item.quantity, 0);
+    const total = cart.reduce(
+        (sum, item) => sum + item.price * item.quantity, 0
+    );
+
+    document.getElementById('cartCount').textContent = count;
+    document.getElementById('cartTotal').textContent = formatPrice(total);
+
+    if (cart.length === 0) {
+        container.innerHTML =
+            '<div class="empty-cart">Здесь пока пусто ♡<br><br>Самое время выбрать моти!</div>';
+        return;
+    }
+
+    container.innerHTML = cart.map(item => `
+        <div class="cart-item">
+            <div>
+                <h4>${item.name}</h4>
+                <p>${formatPrice(item.price)} · ${formatPrice(item.price * item.quantity)}</p>
+            </div>
+
+            <div class="quantity-controls">
+                <button onclick="changeQuantity(${item.id}, -1)" aria-label="Уменьшить количество">−</button>
+                <span>${item.quantity}</span>
+                <button onclick="changeQuantity(${item.id}, 1)" aria-label="Увеличить количество">+</button>
+            </div>
+        </div>
+    `).join('');
+}
+
+function changeQuantity(id, change) {
+    const item = cart.find(product => product.id === id);
+
+    if (!item) return;
+
+    item.quantity += change;
+
+    if (item.quantity <= 0) {
+        cart = cart.filter(product => product.id !== id);
+    }
+
+    updateCart();
+}
+
+function checkout() {
+    if (cart.length === 0) {
+        showToast('Сначала добавь моти в корзину ♡');
+        return;
+    }
+
+    showToast('Это демонстрационный сайт: оформление пока не подключено.');
+}
+
+// Демонстрационная форма подписки
+document.getElementById('newsletterForm').addEventListener('submit', event => {
+    event.preventDefault();
+
+    const email = document.getElementById('emailInput').value.trim();
+
+    if (!email) return;
+
+    showToast('Спасибо! Форма работает в демонстрационном режиме ♡');
+    event.target.reset();
+});
+
+// Закрытие корзины клавишей Escape
+document.addEventListener('keydown', event => {
+    if (event.key === 'Escape') {
+        closeCart();
+    }
+});
+
+updateCart();
+</script>
+
+</body>
+</html>
